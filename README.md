@@ -28,3 +28,10 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
 3. Add entries to the CSV file to be parsed. For each entry, add a `Company` name and `Privacy Policy` URL as seen in the provided example file.
 4. Run the program: `python3 main.py`
 5. Review the generated results in `output_file.csv` and add and correct information where needed
+
+
+## 📌 To-Do List
+* Scrape the link to web form(s) if it exists
+* Format console output for improved visibility of events
+* Documentation/comments
+* Convert resulting .csv into Markdown (.md) table 
