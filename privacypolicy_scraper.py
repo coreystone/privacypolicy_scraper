@@ -23,17 +23,41 @@ def get_potential_emails(soup_string):
 
 def get_potential_web_form_vendor(soup_string) -> str:
     """
-    Returns the name of the web form vendor a site is using, if it can be found. Currently searches for OneTrust or Securiti.ai.
+    Returns the name of the web form vendor a site is using, if it can be found. Compare to the set of URLs fetched.
     """
-    if "securiti" in soup_string:
-        print("Web form vendor found: Securiti")
-        return "Securiti"
+    if "logicmanager" in soup_string:
+        print("Web form vendor found: Logic Manager")
+        return "Logic Manager"
     elif "onetrust" in soup_string:
         print("Web form vendor found: OneTrust")
         return "OneTrust"
+    elif "securiti" in soup_string:
+        print("Web form vendor found: Securiti")
+        return "Securiti"
+    elif "trustarc" in soup_string:
+        print("Web form vendor found: TrustArc")
+        return "TrustArc"
+    elif "truyo" in soup_string:
+        print("Web form vendor found: Truyo")
+        return "Truyo"
+    elif "zendesk" in soup_string:
+        print("Web form vendor found: Zendesk")
+        return "Zendesk"
     else:
         print("Web form vendor not found.")
         return ""
+
+
+def get_potential_web_form(soup) -> set(str):
+    """
+    Attempts to scrape URL of a web form to exercise privacy rights (such as a OneTrust web form).
+    Uses a regex pattern to search for known web form provider domains. Saves a set of unique links that match the pattern.
+    """
+    links = []
+    pattern = "(.logicmanager.com)|(.onetrust.com)|(.securiti.ai)|(.trustarc.com)|(.truyo.com)|(.zendesk.com)"
+    for link in soup.findAll('a', attrs={'href': re.compile(pattern)}):
+        links.append(link.get('href'))
+    return set(links)
 
 
 def check_ccpa(page_text) -> bool:
@@ -64,9 +88,9 @@ def check_ctdpa(page_text) -> bool:
 
 def check_cdpa(page_text) -> bool:
     """
-    returns True or False depending on result of Viriginia Consumer Data Protection Act (CDPA) regular expression
+    returns True or False depending on result of Viriginia Consumer Data Protection Act ((V)CDPA) regular expression
     """
-    regex = re.compile(r'(Virginia( Consumer Data Protection Act)?)|(\(?V\.?C\.?D\.?P\.?A\.?\)?)')
+    regex = re.compile(r'(Virginia( Consumer Data Protection Act)?)|(\(?V?\.?C\.?D\.?P\.?A\.?\)?)')
     return bool(regex.search(page_text))
 
 
