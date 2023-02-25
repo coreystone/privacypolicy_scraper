@@ -57,7 +57,14 @@ def get_potential_web_form(soup) -> set(str):
     pattern = "(.logicmanager.com)|(.onetrust.com)|(.securiti.ai)|(.trustarc.com)|(.truyo.com)|(.zendesk.com)"
     for link in soup.findAll('a', attrs={'href': re.compile(pattern)}):
         links.append(link.get('href'))
-    return set(links)
+
+    links = set(links)
+    if len(links) == 1:
+        return links.pop()
+    elif len(links) == 0:
+        return ""
+    else:
+        return links
 
 
 def check_ccpa(page_text) -> bool:
