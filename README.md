@@ -2,7 +2,7 @@
 
 
 ## ⚠️ DISCLAIMER
-Most websites prohibit automatic collection/processing ("scraping") of their resources, and using this program on most sites will likely be in violation of the site's Terms of Service. This repository is provided strictly for *educational* purposes and I do not condone or encourage the use of this program on sites that do not belong to you, nor am I responsible for the consequences of what you choose to do with this code.
+Most websites prohibit automatic collection/processing ("scraping") of their resources, and using this program on most sites will likely be in violation of some terms of service notices for respective sites. This repository is provided strictly for *educational* purposes and I do not condone or encourage the use of this program on sites that do not belong to you, nor am I responsible for the consequences of what you choose to do with this code. 
 
 
 ## 🔍 About
@@ -11,9 +11,14 @@ Most websites prohibit automatic collection/processing ("scraping") of their res
 
 ## 📑 What is collected?
 Privacy Policy Scraper attempts to identify the following elements of a company's privacy policy:
-* Contact email address of the company's privacy department/handler
-* Web form where a user can exercise their data rights with company (if applicable)
-* The web form solution used by company (if applicable): [OneTrust](https://www.onetrust.com/) or [Securiti.ai](https://securiti.ai/)
+* Contact email address of the company's privacy department/officer
+* Link to a web form where a user can exercise their data rights (if applicable)
+* The web form solution used by company (if applicable): 
+   * [LogicManager](https://www.logicmanager.com/)
+   * [OneTrust](https://www.onetrust.com/)
+   * [Securiti.ai](https://securiti.ai/)
+   * [TrustArc](https://trustarc.com/)
+   * [Truyo](https://truyo.com/)
 * The company's explicit acknowledgement of the following US legal privacy frameworks:
     * [California Consumer Privacy Act (CCPA)](https://www.oag.ca.gov/privacy/ccpa)
     * [Colorado Privacy Act (CPA)](https://coag.gov/resources/colorado-privacy-act/)
@@ -32,6 +37,7 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
 
 ## 📌 To-Do List
 * Scrape the link to web form(s) if it exists
+* Add search for [Nevada privacy law](https://termageddon.com/nevada-revised-statutes-chapter-603a/)
 * Format console output for improved visibility of events
 * Documentation/comments
 * Convert resulting .csv into Markdown (.md) table 
