@@ -36,8 +36,7 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
 
 
 ## 📌 To-Do List
-* Scrape the link to web form(s) if it exists
 * Add search for [Nevada privacy law](https://termageddon.com/nevada-revised-statutes-chapter-603a/)
 * Format console output for improved visibility of events
 * Documentation/comments
-* Convert resulting .csv into Markdown (.md) table 
+* Convert resulting .csv into Markdown (.md) table
