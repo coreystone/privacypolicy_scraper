@@ -20,7 +20,7 @@ def get_potential_emails(soup_string):
         return emails
 
 
-def get_potential_web_form_vendor(soup_string) -> str:
+def get_potential_request_type(soup_string) -> str:
     """
     Returns the name of the web form vendor a site is using, if it can be found. Compare to the set of URLs fetched.
     """
@@ -39,6 +39,9 @@ def get_potential_web_form_vendor(soup_string) -> str:
     elif "truyo" in soup_string:
         print("Web form vendor found: Truyo")
         return "Truyo"
+    elif "wirewheel" in soup_string:
+        print("Web form vendor found: Wirewheel")
+        return "Wirewheel"
     elif "zendesk" in soup_string:
         print("Web form vendor found: Zendesk")
         return "Zendesk"
@@ -47,13 +50,13 @@ def get_potential_web_form_vendor(soup_string) -> str:
         return ""
 
 
-def get_potential_web_form(soup):
+def get_potential_request_form(soup):
     """
     Attempts to scrape URL of a web form to exercise privacy rights (such as a OneTrust web form).
     Uses a regex pattern to search for known web form provider domains. Saves a set of unique links that match the pattern.
     """
     links = []
-    pattern = "(.logicmanager.com)|(.onetrust.com)|(.securiti.ai)|(.trustarc.com)|(.truyo.com)|(.zendesk.com)"
+    pattern = "(.logicmanager.com)|(.onetrust.com)|(.securiti.ai)|(.trustarc.com)|(.truyo.com)|(.wirewheel.io)|(.zendesk.com)"
     for link in soup.findAll('a', attrs={'href': re.compile(pattern)}):
         links.append(link.get('href'))
 
@@ -113,6 +116,10 @@ def check_ucpa(page_text) -> bool:
     if bool(regex.search(page_text)): print("--- UCPA mentioned")
     return bool(regex.search(page_text))
 
+def print_row(index) -> str:
+    # prints the output row at df[i] in readable console format
+    pass
+
 
 if __name__ == '__main__':
     # To test an HTML file "offline", first fetch the .html file:
@@ -142,7 +149,7 @@ if __name__ == '__main__':
         company_name       = row.Company
         privacy_policy_url = row.PrivacyPolicy
 
-        print("[#{index}] Attempting request:".format(row.Index), company_name, "|", privacy_policy_url)
+        print("[#{index}] Attempting request:".format(index=row.Index), company_name, "|", privacy_policy_url)
 
         try:
             page = requests.get(privacy_policy_url)
@@ -162,8 +169,8 @@ if __name__ == '__main__':
             df.at[row.Index, "Company"] = company_name
             df.at[row.Index, "PrivacyPolicy"] = privacy_policy_url
             df.at[row.Index, "Contact"] = get_potential_emails(soup_string)
-            df.at[row.Index, "WebForm"] = get_potential_web_form(soup)
-            df.at[row.Index, "WebFormVendor"] = get_potential_web_form_vendor(soup_string)
+            df.at[row.Index, "RequestForm"] = get_potential_request_form(soup)
+            df.at[row.Index, "RequestType"] = get_potential_request_type(soup_string)
             df.at[row.Index, "CCPA"] = check_ccpa(page_text)
             df.at[row.Index, "CPA"] = check_cpa(page_text)
             df.at[row.Index, "CTDPA"] = check_ctdpa(page_text)
