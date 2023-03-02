@@ -43,3 +43,4 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
 * Collect the date of the policy was posted/updated
 * Identify if a site respects [Do Not Track requests](https://en.wikipedia.org/wiki/Do_Not_Track) per [California Business & Professions Code Section 22575](https://codes.findlaw.com/ca/business-and-professions-code/bpc-sect-22575/)
 * Convert resulting .csv into Markdown (.md) table
+* Check if a privacy policy includes a link to a CCPA metrics report. See [this relevant project](https://github.com/privacy-tech-lab/ccpa-metrics) by privacytechlab.org.
