@@ -38,7 +38,8 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
 ## 📌 To-Do List
 * Add search for [Nevada privacy law](https://termageddon.com/nevada-revised-statutes-chapter-603a/)
 * Format console printing for resulting output rows
-* Scrape phone number for contact
-* Scrape the date of the policy was posted/updated
+* Add Selenium to scrape the privacy policy automatically rather than manually linking it
+* Collect phone number for contact
+* Collect the date of the policy was posted/updated
 * Identify if a site respects [Do Not Track requests](https://en.wikipedia.org/wiki/Do_Not_Track) per [California Business & Professions Code Section 22575](https://codes.findlaw.com/ca/business-and-professions-code/bpc-sect-22575/)
 * Convert resulting .csv into Markdown (.md) table
