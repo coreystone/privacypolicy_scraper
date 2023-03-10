@@ -116,9 +116,32 @@ def check_ucpa(page_text) -> bool:
     if bool(regex.search(page_text)): print("--- UCPA mentioned")
     return bool(regex.search(page_text))
 
-def print_row(index) -> str:
-    # prints the output row at df[i] in readable console format
-    pass
+
+def check_metrics(soup):
+    """
+    Tries to find a mention or direct link to a CCPA metrics page within a privacy policy
+    """
+    links = []
+    # Some companies refer to CCPA metrics as stats or statistics
+    # Some companies have dedicated CCPA privacy policy pages, which often sometimes contain metrics
+    link_pattern = "(^metric)|(ccpa)|(statistic)"
+    text_pattern = "(^metric)|(statistic)"
+
+    for link in soup.findAll('a', attrs={'href': re.compile(link_pattern)}):
+        links.append(link.get('href'))
+
+    links = set(links)
+    print("Unique metric links found:", links) if (len(links) > 0) else print("No links to metrics found.")
+    if len(links) == 1:
+        return links.pop()
+    elif len(links) == 0:
+        # try to see if there is a mention of any metrics at all, perhaps the metrics are provided within the privacy policy directly
+        page_text = soup.get_text()
+        regex = re.compile(text_pattern)
+        if bool(regex.search(page_text)): print("--- Discovered mention of metrics or statistics.")
+        return bool(regex.search(page_text))
+    else:
+        return links
 
 
 if __name__ == '__main__':
@@ -176,6 +199,7 @@ if __name__ == '__main__':
             df.at[row.Index, "CTDPA"] = check_ctdpa(page_text)
             df.at[row.Index, "CDPA"] = check_cdpa(page_text)
             df.at[row.Index, "UCPA"] = check_ucpa(page_text)
+            df.at[row.Index, "Metrics"] = check_metrics(soup)
 
         elif page.status_code == 403:  # Read: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
             print("Connection refused (HTTP 403 FORBIDDEN). Continuing to next company.")
