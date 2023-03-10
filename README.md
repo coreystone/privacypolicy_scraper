@@ -25,6 +25,7 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
     * [Connecticut Data Privacy Act (CTDPA)](https://portal.ct.gov/AG/Sections/Privacy/The-Connecticut-Data-Privacy-Act)
     * [Utah Consumer Privacy Act (UCPA)](https://wirewheel.io/blog/utah-consumer-privacy-act/)
     * [Virginia Consumer Data Protection Act (CDPA)](https://law.lis.virginia.gov/vacodefull/title59.1/chapter53/)
+* Checks if a privacy policy includes a link to a CCPA metrics report. See [this relevant project](https://github.com/privacy-tech-lab/ccpa-metrics) by privacytechlab.org.
 
 
 ## ⚙️ How to run
@@ -39,8 +40,10 @@ Privacy Policy Scraper attempts to identify the following elements of a company'
 * Add search for [Nevada privacy law](https://termageddon.com/nevada-revised-statutes-chapter-603a/)
 * Format console printing for resulting output rows
 * Add Selenium to scrape the privacy policy automatically rather than manually linking it
+
+
+## ❓ Potential features
+Here are some things I'm considering adding but not sure if their usefulness would outweight the clutter/mess they would add to the resulting amount of fields/data across the directory.
 * Collect phone number for contact
 * Collect the date of the policy was posted/updated
 * Identify if a site respects [Do Not Track requests](https://en.wikipedia.org/wiki/Do_Not_Track) per [California Business & Professions Code Section 22575](https://codes.findlaw.com/ca/business-and-professions-code/bpc-sect-22575/)
-* Convert resulting .csv into Markdown (.md) table
-* Check if a privacy policy includes a link to a CCPA metrics report. See [this relevant project](https://github.com/privacy-tech-lab/ccpa-metrics) by privacytechlab.org.
